@@ -22,7 +22,7 @@ pub fn parse_solana_config() -> Option<SolanaConfig> {
 
     let config_path = Path::new(&home)
         .join(".config")
-        .join("solana")
+        .join("miraland")
         .join("cli")
         .join("config.yml");
 
@@ -31,7 +31,7 @@ pub fn parse_solana_config() -> Option<SolanaConfig> {
         Err(e) => {
             println!(
                 "{} {}",
-                style("Failed to open Solana config file:").bold().red(),
+                style("Failed to open Miraland config file:").bold().red(),
                 style(e).bold().red(),
             );
             std::process::exit(1);

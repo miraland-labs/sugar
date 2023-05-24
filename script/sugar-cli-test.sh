@@ -97,7 +97,7 @@ function mainnet_env() {
 
 function devnet_env() {
     ENV_URL="devnet"
-    RPC="https://api.devnet.solana.com"
+    RPC="https://api.devnet-mln.miraland.top"
 }
 
 #-----------------------------------------------------------------------------#
@@ -194,7 +194,7 @@ fi
 # Otherwise the default public one will be used
 
 if [ -z ${RPC+x} ]; then
-    RPC="https://api.${ENV_URL}.solana.com"
+    RPC="https://api.${ENV_URL}.miraland.top"
 fi
 
 while getopts r:p flag; do

@@ -228,7 +228,7 @@ pub async fn process_thaw(args: ThawArgs) -> Result<()> {
     let pb = spinner_with_style();
     pb.set_message("Searching...");
 
-    let solana_cluster: Cluster = get_cluster(program.rpc())?;
+    let miraland_cluster: Cluster = get_cluster(program.rpc())?;
     let rpc_url = get_rpc_url(args.rpc_url);
     let client = RpcClient::new_with_timeout(
         &rpc_url,
@@ -239,10 +239,10 @@ pub async fn process_thaw(args: ThawArgs) -> Result<()> {
         }),
     );
 
-    let solana_cluster = if rpc_url.ends_with("8899") {
+    let miraland_cluster = if rpc_url.ends_with("8899") {
         Cluster::Localnet
     } else {
-        solana_cluster
+        miraland_cluster
     };
 
     // should use existing cache or not?
@@ -259,7 +259,7 @@ pub async fn process_thaw(args: ThawArgs) -> Result<()> {
                 })
                 .collect()
         } else {
-            match solana_cluster {
+            match miraland_cluster {
                 Cluster::Devnet | Cluster::Localnet | Cluster::Mainnet => {
                     let (creator, _) = find_candy_machine_creator_pda(&candy_machine);
                     let creator = bs58::encode(creator).into_string();

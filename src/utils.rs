@@ -15,8 +15,8 @@ use console::{style, Style};
 use dialoguer::theme::ColorfulTheme;
 pub use indicatif::{ProgressBar, ProgressStyle};
 use mpl_token_metadata::ID as TOKEN_METADATA_PROGRAM_ID;
-use solana_account_decoder::UiAccountEncoding;
-use solana_client::{
+use miraland_account_decoder::UiAccountEncoding;
+use miraland_client::{
     rpc_client::RpcClient,
     rpc_config::{RpcAccountInfoConfig, RpcProgramAccountsConfig},
     rpc_filter::{Memcmp, RpcFilterType},
@@ -25,9 +25,11 @@ use spl_token::state::{Account as SplAccount, Mint};
 
 use crate::{common::*, config::data::Cluster};
 
+// TODO: devnet genesis hash, MI
 /// Hash for devnet cluster
 pub const DEVNET_HASH: &str = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG";
 
+// TODO: mainnet genesis hash, MI
 /// Hash for mainnet-beta cluster
 pub const MAINNET_HASH: &str = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d";
 

@@ -19,7 +19,7 @@ use mpl_token_metadata::{
     },
     state::{Metadata, TokenMetadataAccount},
 };
-use solana_client::rpc_response::Response;
+use miraland_client::rpc_response::Response;
 use spl_associated_token_account::get_associated_token_address;
 use spl_token::ID as TOKEN_PROGRAM_ID;
 use tokio::sync::Semaphore;
@@ -311,7 +311,7 @@ pub async fn mint(
             _ => "",
         };
         return Err(anyhow!(
-            "Minting most likely failed with a bot tax. Check the transaction link for more details: https://explorer.solana.com/tx/{}{}",
+            "Minting most likely failed with a bot tax. Check the transaction link for more details: https://explorer.miraland.top/tx/{}{}",
             sig.to_string(),
             cluster_param,
         ));

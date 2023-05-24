@@ -1,10 +1,10 @@
 [![Crate](https://img.shields.io/crates/v/sugar-cli)](https://crates.io/crates/sugar-cli)
 [![Downloads](https://img.shields.io/crates/d/sugar-cli)](https://crates.io/crates/sugar-cli)
-[![Stars](https://img.shields.io/github/stars/metaplex-foundation/sugar?style=social)](https://img.shields.io/github/stars/metaplex-foundation/sugar?style=social)
-[![Forks](https://img.shields.io/github/forks/metaplex-foundation/sugar?style=social)](https://img.shields.io/github/forks/metaplex-foundation/sugar?style=social)
-[![Release](https://img.shields.io/github/v/release/metaplex-foundation/sugar)](https://img.shields.io/github/v/release/metaplex-foundation/sugar)
-[![Build and Release](https://github.com/metaplex-foundation/sugar/actions/workflows/build.yml/badge.svg)](https://github.com/metaplex-foundation/sugar/actions/workflows/build.yml)
-[![License](https://img.shields.io/crates/l/sugar-cli)](https://github.com/metaplex-foundation/sugar/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/miraland-labs/sugar?style=social)](https://img.shields.io/github/stars/miraland-labs/sugar?style=social)
+[![Forks](https://img.shields.io/github/forks/miraland-labs/sugar?style=social)](https://img.shields.io/github/forks/miraland-labs/sugar?style=social)
+[![Release](https://img.shields.io/github/v/release/miraland-labs/sugar)](https://img.shields.io/github/v/release/miraland-labs/sugar)
+[![Build and Release](https://github.com/miraland-labs/sugar/actions/workflows/build.yml/badge.svg)](https://github.com/miraland-labs/sugar/actions/workflows/build.yml)
+[![License](https://img.shields.io/crates/l/sugar-cli)](https://github.com/miraland-labs/sugar/blob/main/LICENSE)
 
 # Sugar: A Candy Machine CLI
 
@@ -29,7 +29,7 @@ See [the docs](https://docs.metaplex.com/tools/sugar/introduction) for full inst
 For macOS, Linux and Windows Subsystem Linux (WSL), run the following install script in your terminal:
 
 ```bash
-bash <(curl -sSf https://raw.githubusercontent.com/metaplex-foundation/sugar/main/script/sugar-install.sh)
+bash <(curl -sSf https://raw.githubusercontent.com/miraland-labs/sugar/main/script/sugar-install.sh)
 ```
 
 For Windows:
@@ -49,7 +49,7 @@ Download [this installer binary](https://github.com/metaplex-foundation/winstall
 Using Crates.io:
 
 ```bash
-cargo install sugar-cli
+cargo install miraplex-sugar-cli
 ```
 
 
@@ -64,17 +64,17 @@ cargo install --path ./
 
 ## Quick Start
 
-Set up your Solana CLI config with an RPC url and a keypair:
+Set up your Miraland CLI config with an RPC url and a keypair:
 
 ```bash
-solana config set --url <rpc url> --keypair <path to keypair file>
+miraland config set --url <rpc url> --keypair <path to keypair file>
 ```
 
-Sugar will then use these settings by default if you don't specify them as CLI options, allowing commands to be much simpler. If you need help setting up Solana CLI and creating a `devnet` wallet, check the [Candy Machine v2 documentation](http://docs.metaplex.com/candy-machine-v2/getting-started#solana-wallet).
+Sugar will then use these settings by default if you don't specify them as CLI options, allowing commands to be much simpler. If you need help setting up Miraland CLI and creating a `devnet` wallet, check the [Candy Machine v2 documentation](http://docs.metaplex.com/candy-machine-v2/getting-started#solana-wallet).
 
 Create a folder named `assets` to store your json and media file pairs with the naming convention 0.json, 0.<ext>, 1.json, 1.<ext>, etc., where the extension is `.png`, `.jpg`, etc. This is the same format described in the [Candy Machine v2 documentation](http://docs.metaplex.com/candy-machine-v2/preparing-assets).
 
-You can then use the `launch` command to start an interactive process to create your config file and deploy a Candy Machine to Solana:
+You can then use the `launch` command to start an interactive process to create your config file and deploy a Candy Machine to Miraland:
 
 ```bash
 sugar launch

@@ -4,7 +4,7 @@ pub use anchor_client::{
     solana_sdk::{
         account::Account,
         commitment_config::{CommitmentConfig, CommitmentLevel},
-        native_token::LAMPORTS_PER_SOL,
+        native_token::LAMPORTS_PER_MLN,
         pubkey::Pubkey,
         signature::{Keypair, Signature, Signer},
         system_instruction, system_program, sysvar,
@@ -16,7 +16,7 @@ use anyhow::Error;
 use console::style;
 use mpl_token_metadata::{instruction::sign_metadata, ID as METAPLEX_PROGRAM_ID};
 use retry::{delay::Exponential, retry};
-use solana_client::rpc_client::RpcClient;
+use miraland_client::rpc_client::RpcClient;
 use tokio::sync::Semaphore;
 
 use crate::{
@@ -100,16 +100,16 @@ pub async fn process_sign(args: SignArgs) -> Result<()> {
         let candy_machine_id = Pubkey::from_str(&candy_machine_id)
             .expect("Failed to parse pubkey from candy machine id.");
 
-        let solana_cluster: Cluster = get_cluster(program.rpc())?;
+        let miraland_cluster: Cluster = get_cluster(program.rpc())?;
         let rpc_url = get_rpc_url(args.rpc_url);
 
-        let solana_cluster = if rpc_url.ends_with("8899") {
+        let miraland_cluster = if rpc_url.ends_with("8899") {
             Cluster::Localnet
         } else {
-            solana_cluster
+            miraland_cluster
         };
 
-        let account_keys = match solana_cluster {
+        let account_keys = match miraland_cluster {
             Cluster::Devnet | Cluster::Localnet | Cluster::Mainnet => {
                 let client = RpcClient::new_with_timeout(&rpc_url, Duration::from_secs(300));
                 let (creator, _) = find_candy_machine_creator_pda(&candy_machine_id);

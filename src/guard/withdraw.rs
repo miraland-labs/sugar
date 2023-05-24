@@ -4,7 +4,7 @@ use anchor_client::solana_sdk::pubkey::Pubkey;
 use anyhow::Result;
 use console::style;
 use mpl_candy_guard::{accounts::Withdraw as WithdrawAccount, instruction::Withdraw};
-use solana_program::native_token::LAMPORTS_PER_SOL;
+use solana_program::native_token::LAMPORTS_PER_MLN;
 
 use crate::{cache::load_cache, common::*, utils::*};
 
@@ -72,7 +72,7 @@ pub fn process_guard_withdraw(args: GuardWithdrawArgs) -> Result<()> {
 
     println!(
         "\nReceived ◎ {} from rent fee.",
-        (account.lamports as f64) / (LAMPORTS_PER_SOL as f64)
+        (account.lamports as f64) / (LAMPORTS_PER_MLN as f64)
     );
 
     // if we closed the candy guard from the cache file, remove

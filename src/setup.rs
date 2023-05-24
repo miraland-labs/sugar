@@ -88,7 +88,7 @@ pub fn get_rpc_url(rpc_url_opt: Option<String>) -> String {
             None => {
                 println!(
                     "{}",
-                    style("No RPCL URL found in Solana config file.")
+                    style("No RPCL URL found in Miraland config file.")
                         .bold()
                         .red(),
                 );

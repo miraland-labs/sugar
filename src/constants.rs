@@ -4,7 +4,7 @@ pub use mpl_token_metadata::state::{
 };
 
 /// Metaplex program id.
-pub const METAPLEX_PROGRAM_ID: &str = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s";
+pub const METAPLEX_PROGRAM_ID: &str = "Meta88XpDHcSJZDFiHop6c9sXaufkZX5depkZyrYBWv";
 
 /// Civic gateway program id.
 pub const CIVIC: &str = "gatem74V238djXdzWnJf94Wo1DcnuGkfijbf3AuBhfs";
@@ -74,7 +74,7 @@ pub const DEFAULT_AIRDROP_LIST_HELP: &str = "Path to airdrop targets list, forma
 pub const DEFAULT_CONFIG: &str = "config.json";
 
 /// Default path for keypair file.
-pub const DEFAULT_KEYPATH: &str = "~/.config/solana/id.json";
+pub const DEFAULT_KEYPATH: &str = "~/.config/miraland/id.json";
 
 /// Bundlr devnet endpoint.
 pub const BUNDLR_DEVNET: &str = "https://devnet.bundlr.network";

@@ -8,7 +8,7 @@ use mpl_candy_guard::{
     state::{CandyGuardData, DATA_OFFSET},
 };
 use serde::{Deserialize, Serialize, Serializer};
-use solana_client::{rpc_client::RpcClient, rpc_request::RpcRequest};
+use miraland_client::{rpc_client::RpcClient, rpc_request::RpcRequest};
 use solana_program::{instruction::AccountMeta, program_pack::Pack};
 use spl_associated_token_account::get_associated_token_address;
 use spl_token::state::Account as SplAccount;

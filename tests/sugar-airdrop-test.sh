@@ -9,7 +9,7 @@
 #}
 
 ENV_URL="devnet"
-RPC="https://api.devnet.solana.com"
+RPC="https://api.devnet-mln.miraland.top"
 STORAGE="bundlr"
 
 SCRIPT_DIR=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &>/dev/null && pwd)

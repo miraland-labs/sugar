@@ -1,11 +1,11 @@
 use std::{cmp, fs, path::Path, sync::Arc};
 
-use anchor_client::solana_sdk::native_token::LAMPORTS_PER_SOL;
+use anchor_client::solana_sdk::native_token::LAMPORTS_PER_MLN;
 use async_trait::async_trait;
 use bundlr_sdk::{tags::Tag, Bundlr, Ed25519Signer as SolanaSigner};
 use clap::crate_version;
 use console::style;
-use solana_client::rpc_client::RpcClient;
+use miraland_client::rpc_client::RpcClient;
 use tokio::{
     task::JoinHandle,
     time::{sleep, Duration},
@@ -45,9 +45,9 @@ impl BundlrMethod {
     pub async fn new(sugar_config: &SugarConfig, _config_data: &ConfigData) -> Result<Self> {
         let client = setup_client(sugar_config)?;
         let program = client.program(CANDY_MACHINE_ID);
-        let solana_cluster: Cluster = get_cluster(program.rpc())?;
+        let miraland_cluster: Cluster = get_cluster(program.rpc())?;
 
-        let bundlr_node = match solana_cluster {
+        let bundlr_node = match miraland_cluster {
             Cluster::Devnet => BUNDLR_DEVNET,
             Cluster::Mainnet => BUNDLR_MAINNET,
             Cluster::Unknown | Cluster::Localnet => {
@@ -91,9 +91,9 @@ impl BundlrMethod {
 
         let solana_address = addresses
             .get("solana")
-            .expect("Failed to get Solana address from bundlr.")
+            .expect("Failed to get Miraland address from bundlr.")
             .as_str()
-            .expect("Solana bundlr address is not of type string.")
+            .expect("Miraland bundlr address is not of type string.")
             .to_string();
         Ok(solana_address)
     }
@@ -123,7 +123,7 @@ impl BundlrMethod {
         println!(
             "  -> lamports: {} (◎ {})",
             amount,
-            amount as f64 / LAMPORTS_PER_SOL as f64
+            amount as f64 / LAMPORTS_PER_MLN as f64
         );
 
         let sig = rpc_client.send_and_confirm_transaction_with_spinner_and_commitment(

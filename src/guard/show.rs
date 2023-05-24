@@ -6,7 +6,7 @@ use chrono::NaiveDateTime;
 use console::style;
 use mpl_candy_guard::state::{CandyGuard, CandyGuardData, GuardSet, DATA_OFFSET};
 use mpl_candy_machine_core::constants::EMPTY_STR;
-use solana_program::native_token::LAMPORTS_PER_SOL;
+use solana_program::native_token::LAMPORTS_PER_MLN;
 
 use crate::{cache::load_cache, common::*, show::print_with_style, utils::*};
 
@@ -112,7 +112,7 @@ fn print_guard_set(guard_set: &GuardSet, padding: String) -> Result<()> {
             format!(
                 "{} (◎ {})",
                 bot_tax.lamports,
-                bot_tax.lamports as f64 / LAMPORTS_PER_SOL as f64
+                bot_tax.lamports as f64 / LAMPORTS_PER_MLN as f64
             ),
         );
         print_with_style(
@@ -133,7 +133,7 @@ fn print_guard_set(guard_set: &GuardSet, padding: String) -> Result<()> {
             format!(
                 "{} (◎ {})",
                 sol_payment.lamports,
-                sol_payment.lamports as f64 / LAMPORTS_PER_SOL as f64
+                sol_payment.lamports as f64 / LAMPORTS_PER_MLN as f64
             ),
         );
         print_with_style(
@@ -365,7 +365,7 @@ fn print_guard_set(guard_set: &GuardSet, padding: String) -> Result<()> {
             format!(
                 "{} (◎ {})",
                 freeze_sol_payment.lamports,
-                freeze_sol_payment.lamports as f64 / LAMPORTS_PER_SOL as f64
+                freeze_sol_payment.lamports as f64 / LAMPORTS_PER_MLN as f64
             ),
         );
         print_with_style(

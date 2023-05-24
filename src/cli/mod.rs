@@ -23,7 +23,7 @@ pub struct Cli {
 pub enum Commands {
     /// Interact with the bundlr network
     Bundlr {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -53,7 +53,7 @@ pub enum Commands {
         #[clap(short, long, default_value = DEFAULT_CONFIG)]
         config: String,
 
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -103,7 +103,7 @@ pub enum Commands {
         #[clap(default_value = DEFAULT_ASSETS)]
         assets_dir: String,
 
-        /// Path to the keypair file [default: solana config or "~/.config/solana/id.json"]
+        /// Path to the keypair file [default: solana config or "~/.config/miraland/id.json"]
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -130,7 +130,7 @@ pub enum Commands {
 
     /// Mint one NFT from candy machine
     Mint {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -156,7 +156,7 @@ pub enum Commands {
     },
     /// Airdrop NFTs from candy machine
     Airdrop {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -179,7 +179,7 @@ pub enum Commands {
 
     /// Reveal the NFTs from a hidden settings candy machine
     Reveal {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -202,7 +202,7 @@ pub enum Commands {
 
     /// Show the on-chain config of an existing candy machine
     Show {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -224,7 +224,7 @@ pub enum Commands {
 
     /// Sign one or all NFTs from candy machine
     Sign {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -255,7 +255,7 @@ pub enum Commands {
         #[clap(short, long, default_value = DEFAULT_CONFIG)]
         config: String,
 
-        /// Path to the keypair file [default: solana config or "~/.config/solana/id.json"]
+        /// Path to the keypair file [default: solana config or "~/.config/miraland/id.json"]
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -285,7 +285,7 @@ pub enum Commands {
 
     /// Verify uploaded data
     Verify {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -304,7 +304,7 @@ pub enum Commands {
         #[clap(long)]
         candy_machine: Option<String>,
 
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -338,7 +338,7 @@ pub enum ConfigSubcommands {
         #[clap(short, long)]
         rpc_url: Option<String>,
 
-        /// Path to the keypair file [default: solana config or "~/.config/solana/id.json"]
+        /// Path to the keypair file [default: solana config or "~/.config/miraland/id.json"]
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -352,7 +352,7 @@ pub enum ConfigSubcommands {
         #[clap(short, long, default_value = DEFAULT_CONFIG)]
         config: String,
 
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -374,7 +374,7 @@ pub enum ConfigSubcommands {
     },
     /// Set specific candy machine config values
     Set {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -404,7 +404,7 @@ pub enum ConfigSubcommands {
 pub enum CollectionSubcommands {
     /// Set the collection mint on the candy machine
     Set {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -433,7 +433,7 @@ pub enum CollectionSubcommands {
 pub enum GuardCommand {
     /// Add a candy guard on a candy machine
     Add {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -459,7 +459,7 @@ pub enum GuardCommand {
     },
     /// Remove a candy guard from a candy machine
     Remove {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -481,7 +481,7 @@ pub enum GuardCommand {
     },
     /// Show the on-chain config of an existing candy guard
     Show {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -499,7 +499,7 @@ pub enum GuardCommand {
     },
     /// Update the configuration of a candy guard
     Update {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -521,7 +521,7 @@ pub enum GuardCommand {
     },
     /// Withdraw funds from a candy guard account closing it
     Withdraw {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -543,7 +543,7 @@ pub enum GuardCommand {
 pub enum FreezeCommand {
     /// Initialize the freeze escrow account.
     Initialize {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -577,7 +577,7 @@ pub enum FreezeCommand {
     },
     /// Thaw a NFT or all NFTs in a candy guard.
     Thaw {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 
@@ -626,7 +626,7 @@ pub enum FreezeCommand {
     },
     /// Unlock treasury funds after freeze is turned off or expires.
     UnlockFunds {
-        /// Path to the keypair file, uses Sol config or defaults to "~/.config/solana/id.json"
+        /// Path to the keypair file, uses Sol config or defaults to "~/.config/miraland/id.json"
         #[clap(short, long)]
         keypair: Option<String>,
 

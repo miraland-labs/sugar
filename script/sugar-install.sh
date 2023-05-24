@@ -38,7 +38,7 @@ case "$PROCESSOR" in
     arm* | aarch* | ppc* )
         if [ "$OS_FLAVOUR" != Darwin ]; then
             echo "Binary for $PROCESSOR architecture is not currently supported using this installer. Please follow the instructions at:"
-            echo "  => $(CYN https://github.com/metaplex-foundation/sugar)"
+            echo "  => $(CYN https://github.com/miraland-labs/sugar)"
             echo ""
             echo "for details on alternate installation methods."
             exit 1
@@ -55,7 +55,8 @@ esac
 echo "Checking available releases..."
 echo ""
 
-TAGS=`curl -L --silent https://api.github.com/repos/metaplex-foundation/sugar/releases | grep tag_name`
+# TAGS=`curl -L --silent https://api.github.com/repos/miraland-labs/sugar/releases | grep tag_name`  # MI
+TAGS=$(curl -L --silent https://api.github.com/repos/miraland-labs/sugar/releases | grep tag_name)
 
 TAGS_V1=""
 TAGS_V2=""
@@ -66,13 +67,15 @@ do
     # v1 release
     if [[ "$TAG" == *v1* ]]; then
       if [[ "$TAG" > "\"v1" ]] && [ -z "$TAG_V1" ]; then
-        TAG_V1=`echo $TAG | sed "s/\"//g;s/,//"`
+        # TAG_V1=`echo $TAG | sed "s/\"//g;s/,//"`  # MI
+        TAG_V1=$(echo "$TAG" | sed "s/\"//g;s/,//")
       fi
     fi
     # v2 release
     if [[ "$TAG" == *v2* ]]; then
       if [[ "$TAG" > "\"v2" ]] && [ -z "$TAG_V2" ]; then
-        TAG_V2=`echo $TAG | sed "s/\"//g;s/,//"`
+        # TAG_V2=`echo $TAG | sed "s/\"//g;s/,//"`  # MI
+        TAG_V2=$(echo "$TAG" | sed "s/\"//g;s/,//")
       fi
     fi
   fi
@@ -121,7 +124,7 @@ echo ""
 echo "🖥  $(CYN "Downloading binary")"
 
 # downloads the distribution file
-REMOTE="https://github.com/metaplex-foundation/sugar/releases/download/$RELEASE/"
+REMOTE="https://github.com/miraland-labs/sugar/releases/download/$RELEASE/"
 curl -L --progress-bar $REMOTE$BIN"-"$DIST --output "$SOURCE/$DIST"
 abort_on_error $?
 

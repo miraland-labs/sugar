@@ -4,7 +4,7 @@ use std::{
 };
 
 use anchor_client::solana_sdk::{
-    native_token::LAMPORTS_PER_SOL, pubkey::Pubkey, signature::Keypair,
+    native_token::LAMPORTS_PER_MLN, pubkey::Pubkey, signature::Keypair,
 };
 pub use anyhow::{anyhow, Result};
 use chrono::prelude::*;
@@ -175,7 +175,7 @@ pub fn go_live_date_as_timestamp(go_live_date: &Option<String>) -> Result<Option
 }
 
 pub fn price_as_lamports(price: f64) -> u64 {
-    (price * LAMPORTS_PER_SOL as f64) as u64
+    (price * LAMPORTS_PER_MLN as f64) as u64
 }
 
 fn to_pubkey<'de, D>(deserializer: D) -> Result<Pubkey, D::Error>

@@ -15,7 +15,7 @@ use mpl_token_metadata::{
     instruction::MetadataDelegateRole, pda::find_metadata_delegate_record_account,
     state::TokenStandard,
 };
-use solana_program::native_token::LAMPORTS_PER_SOL;
+use solana_program::native_token::LAMPORTS_PER_MLN;
 
 use crate::{
     common::*,
@@ -154,8 +154,8 @@ pub fn initialize_candy_machine(
 
     if lamports > balance {
         return Err(DeployError::BalanceTooLow(
-            format!("{:.3}", (balance as f64 / LAMPORTS_PER_SOL as f64)),
-            format!("{:.3}", (lamports as f64 / LAMPORTS_PER_SOL as f64)),
+            format!("{:.3}", (balance as f64 / LAMPORTS_PER_MLN as f64)),
+            format!("{:.3}", (lamports as f64 / LAMPORTS_PER_MLN as f64)),
         )
         .into());
     }

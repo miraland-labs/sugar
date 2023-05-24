@@ -13,7 +13,7 @@ use mpl_token_metadata::{
     ID as TOKEN_METADATA_PROGRAM_ID,
 };
 use serde::Serialize;
-use solana_client::{client_error::ClientError, rpc_client::RpcClient};
+use miraland_client::{client_error::ClientError, rpc_client::RpcClient};
 use tokio::sync::Semaphore;
 
 use crate::{
@@ -103,16 +103,16 @@ pub async fn process_reveal(args: RevealArgs) -> Result<()> {
 
     let spinner = spinner_with_style();
     spinner.set_message("Loading...");
-    let solana_cluster: Cluster = get_cluster(program.rpc())?;
+    let miraland_cluster: Cluster = get_cluster(program.rpc())?;
     let rpc_url = get_rpc_url(args.rpc_url);
 
-    let solana_cluster = if rpc_url.ends_with("8899") {
+    let miraland_cluster = if rpc_url.ends_with("8899") {
         Cluster::Localnet
     } else {
-        solana_cluster
+        miraland_cluster
     };
 
-    let metadata_pubkeys = match solana_cluster {
+    let metadata_pubkeys = match miraland_cluster {
         Cluster::Mainnet | Cluster::Devnet | Cluster::Localnet => {
             let client = RpcClient::new_with_timeout(
                 &rpc_url,
@@ -137,7 +137,7 @@ pub async fn process_reveal(args: RevealArgs) -> Result<()> {
         spinner.finish_with_message(format!(
             "{}{:?}",
             style("No NFTs found on ").red().bold(),
-            style(solana_cluster).red().bold()
+            style(miraland_cluster).red().bold()
         ));
         return Err(anyhow!(
             "No minted NFTs found for candy machine {}",

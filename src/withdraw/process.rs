@@ -3,7 +3,7 @@ use std::{rc::Rc, str::FromStr};
 pub use anchor_client::{
     solana_sdk::{
         commitment_config::{CommitmentConfig, CommitmentLevel},
-        native_token::LAMPORTS_PER_SOL,
+        native_token::LAMPORTS_PER_MLN,
         pubkey::Pubkey,
         signature::{Keypair, Signature, Signer},
         system_instruction, system_program, sysvar,
@@ -14,8 +14,8 @@ pub use anchor_client::{
 use console::{style, Style};
 use dialoguer::{theme::ColorfulTheme, Confirm};
 use mpl_candy_machine_core::{accounts as nft_accounts, instruction as nft_instruction};
-use solana_account_decoder::UiAccountEncoding;
-use solana_client::{
+use miraland_account_decoder::UiAccountEncoding;
+use miraland_client::{
     rpc_config::{RpcAccountInfoConfig, RpcProgramAccountsConfig},
     rpc_filter::{Memcmp, RpcFilterType},
 };
@@ -118,7 +118,7 @@ pub fn process_withdraw(args: WithdrawArgs) -> Result<()> {
             println!(
                 "\nFound {} candy machines, total amount: ◎ {}",
                 accounts.len(),
-                total / LAMPORTS_PER_SOL as f64
+                total / LAMPORTS_PER_MLN as f64
             );
 
             if !accounts.is_empty() {
@@ -130,7 +130,7 @@ pub fn process_withdraw(args: WithdrawArgs) -> Result<()> {
                         println!(
                             "{:48} {:>12.8}",
                             pubkey.to_string(),
-                            account.lamports as f64 / LAMPORTS_PER_SOL as f64
+                            account.lamports as f64 / LAMPORTS_PER_MLN as f64
                         );
                     }
                 } else {

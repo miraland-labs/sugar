@@ -61,9 +61,9 @@ impl SHDWMethod {
         if let Some(pubkey) = &config_data.shdw_storage_account {
             let client = setup_client(sugar_config)?;
             let program = client.program(SHADOW_DRIVE_PROGRAM_ID);
-            let solana_cluster: Cluster = get_cluster(program.rpc())?;
+            let miraland_cluster: Cluster = get_cluster(program.rpc())?;
 
-            let endpoint = match solana_cluster {
+            let endpoint = match miraland_cluster {
                 Cluster::Devnet => DEVNET_ENDPOINT,
                 Cluster::Mainnet => MAINNET_ENDPOINT,
                 Cluster::Unknown | Cluster::Localnet => {

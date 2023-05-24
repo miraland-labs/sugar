@@ -8,6 +8,7 @@ use anchor_client::solana_sdk::{
 };
 use anyhow::Result;
 use console::style;
+use miraland_client::rpc_response::Response;
 use mpl_candy_machine_core::{
     accounts as nft_accounts, instruction as nft_instruction, AccountVersion, CandyMachine,
 };
@@ -19,7 +20,6 @@ use mpl_token_metadata::{
     },
     state::{Metadata, TokenMetadataAccount},
 };
-use miraland_client::rpc_response::Response;
 use spl_associated_token_account::get_associated_token_address;
 use spl_token::ID as TOKEN_PROGRAM_ID;
 use tokio::sync::Semaphore;

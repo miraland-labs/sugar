@@ -13,12 +13,12 @@ pub use anchor_client::{
 };
 use console::{style, Style};
 use dialoguer::{theme::ColorfulTheme, Confirm};
-use mpl_candy_machine_core::{accounts as nft_accounts, instruction as nft_instruction};
 use miraland_account_decoder::UiAccountEncoding;
 use miraland_client::{
     rpc_config::{RpcAccountInfoConfig, RpcProgramAccountsConfig},
     rpc_filter::{Memcmp, RpcFilterType},
 };
+use mpl_candy_machine_core::{accounts as nft_accounts, instruction as nft_instruction};
 
 use crate::{
     candy_machine::CANDY_MACHINE_ID,

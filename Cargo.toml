@@ -1,5 +1,5 @@
 [package]
-name = "sugar-cli"
+name = "miraplex-sugar-cli"
 version = "2.1.1"
 edition = "2021"
 description = "Command line tool for creating and managing Miraplex Candy Machines. Derived/Forked from Metaplex."
@@ -69,3 +69,7 @@ url = "2.2.2"
 version = "1"
 default-features = false
 features = ["precommit-hook", "user-hooks"]
+
+[lib]
+crate-type = ["lib"]
+name = "sugar_cli"

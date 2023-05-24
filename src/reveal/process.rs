@@ -7,13 +7,13 @@ use anchor_client::solana_sdk::account::Account;
 use anchor_lang::AnchorDeserialize;
 use console::style;
 use futures::future::join_all;
+use miraland_client::{client_error::ClientError, rpc_client::RpcClient};
 use mpl_token_metadata::{
     instruction::update_metadata_accounts_v2,
     state::{DataV2, Metadata},
     ID as TOKEN_METADATA_PROGRAM_ID,
 };
 use serde::Serialize;
-use miraland_client::{client_error::ClientError, rpc_client::RpcClient};
 use tokio::sync::Semaphore;
 
 use crate::{

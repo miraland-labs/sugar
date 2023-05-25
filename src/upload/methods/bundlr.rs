@@ -1,11 +1,11 @@
 use std::{cmp, fs, path::Path, sync::Arc};
 
-use anchor_client::solana_sdk::native_token::LAMPORTS_PER_SOL;
+use anchor_client::solana_sdk::native_token::LAMPORTS_PER_MLN;
 use async_trait::async_trait;
 use bundlr_sdk::{tags::Tag, Bundlr, Ed25519Signer as SolanaSigner};
 use clap::crate_version;
 use console::style;
-use solana_client::rpc_client::RpcClient;
+use miraland_client::rpc_client::RpcClient;
 use tokio::{
     task::JoinHandle,
     time::{sleep, Duration},
@@ -67,7 +67,7 @@ impl BundlrMethod {
         let bundlr_client = Bundlr::new(
             bundlr_node.to_string(),
             "solana".to_string(),
-            "sol".to_string(),
+            "mln".to_string(),
             signer,
         );
 
@@ -121,9 +121,9 @@ impl BundlrMethod {
         println!("Funding address:");
         println!("  -> pubkey: {payer_pubkey}");
         println!(
-            "  -> lamports: {} (◎ {})",
+            "  -> lamports: {} (𝇊 {})",
             amount,
-            amount as f64 / LAMPORTS_PER_SOL as f64
+            amount as f64 / LAMPORTS_PER_MLN as f64
         );
 
         let sig = rpc_client.send_and_confirm_transaction_with_spinner_and_commitment(

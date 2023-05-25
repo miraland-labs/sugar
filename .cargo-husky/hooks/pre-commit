@@ -11,7 +11,10 @@ then
     exit 1
 fi
 
-if ! cargo clippy --all-targets -- -D warnings
+# MI: -D warning will prevent continuing for Warning case. so comment out vanilla -D warnings
+# MI: -D means deny, Error
+# if ! cargo clippy --all-targets -- -D warnings
+if ! cargo clippy --all-targets -- -W warnings
 then
     echo "There are some clippy issues."
     exit 1

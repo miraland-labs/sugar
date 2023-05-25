@@ -38,7 +38,7 @@ case "$PROCESSOR" in
     arm* | aarch* | ppc* )
         if [ "$OS_FLAVOUR" != Darwin ]; then
             echo "Binary for $PROCESSOR architecture is not currently supported using this installer. Please follow the instructions at:"
-            echo "  => $(CYN https://github.com/metaplex-foundation/sugar)"
+            echo "  => $(CYN https://github.com/miraland-labs/sugar)"
             echo ""
             echo "for details on alternate installation methods."
             exit 1
@@ -73,7 +73,7 @@ echo "$(CYN "1.") 🖥  $(CYN "Downloading distribution")"
 echo ""
 
 # downloads the distribution file
-REMOTE="https://github.com/metaplex-foundation/sugar/releases/latest/download/"
+REMOTE="https://github.com/miraland-labs/sugar/releases/latest/download/"
 curl -L $REMOTE$BIN"-"$DIST --output "$SOURCE/$DIST"
 abort_on_error $?
 

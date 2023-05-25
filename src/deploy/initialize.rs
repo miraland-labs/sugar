@@ -12,7 +12,7 @@ use mpl_candy_machine::{
 pub use mpl_token_metadata::state::{
     MAX_CREATOR_LIMIT, MAX_NAME_LENGTH, MAX_SYMBOL_LENGTH, MAX_URI_LENGTH,
 };
-use solana_program::native_token::LAMPORTS_PER_SOL;
+use solana_program::native_token::LAMPORTS_PER_MLN;
 
 use crate::{
     candy_machine::{parse_config_price, CANDY_MACHINE_ID},
@@ -37,7 +37,7 @@ pub fn create_candy_machine_data(
         None
     };
 
-    // If SPL token is used, get the decimals from the token mint account, otherwise use 9 for SOL.
+    // If Solarti token is used, get the decimals from the token mint account, otherwise use 9 for MLN.
     let decimals = get_mint_decimals(&program, config)?;
 
     let whitelist_mint_settings = config
@@ -133,8 +133,8 @@ pub fn initialize_candy_machine(
 
     if lamports > balance {
         return Err(DeployError::BalanceTooLow(
-            format!("{:.3}", (balance as f64 / LAMPORTS_PER_SOL as f64)),
-            format!("{:.3}", (lamports as f64 / LAMPORTS_PER_SOL as f64)),
+            format!("{:.3}", (balance as f64 / LAMPORTS_PER_MLN as f64)),
+            format!("{:.3}", (lamports as f64 / LAMPORTS_PER_MLN as f64)),
         )
         .into());
     }

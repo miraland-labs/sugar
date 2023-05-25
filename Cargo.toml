@@ -1,10 +1,10 @@
 [package]
-name = "sugar-cli"
+name = "miraplex-sugar-cli"
 version = "1.2.2"
 edition = "2021"
-description = "Command line tool for creating and managing Metaplex Candy Machines."
+description = "Command line tool for creating and managing Miraplex Candy Machines. Derived/Forked from Metaplex."
 license = "Apache-2.0"
-repository = "https://github.com/metaplex-foundation/sugar"
+repository = "https://github.com/miraland-labs/sugar"
 documentation = "https://docs.metaplex.com/sugar/introduction"
 
 [[bin]]
@@ -12,9 +12,9 @@ name = "sugar"
 path = "src/main.rs"
 
 [dependencies]
-anchor-client = "0.25.0"
-anchor-lang = "0.25.0"
-anchor-spl = "0.25.0"
+anchor-client = { package = "solarti-anchor-client", version = "0.26.0" }
+anchor-lang = { package = "solarti-anchor-lang", version = "0.26.0" }
+anchor-spl = { package = "solarti-anchor-spl", version = "0.26.0" }
 anyhow = "1.0.58"
 async-trait = "0.1.57"
 borsh = "0.9.3"
@@ -34,8 +34,8 @@ indexmap = { version = "1.9.1", features = ["serde"] }
 indicatif = { version = "0.16.2", features = ["rayon"] }
 ini = "1.3.0"
 lazy_static = "1.4.0"
-mpl-candy-machine = { version = "4.5", features = ["no-entrypoint"] }
-mpl-token-metadata = "1.5"
+mpl-candy-machine = { package = "miraplex-candy-machine", version = "4.5.1", features = ["no-entrypoint"] }
+mpl-token-metadata = { package = "miraplex-token-metadata", version = "~1.7.1" }
 num_cpus = "1.13.1"
 phf = { version = "0.10", features = ["macros"] }
 rand = "0.8.5"
@@ -50,14 +50,13 @@ serde_json = "1.0.82"
 serde_yaml = "0.8.24"
 sha2 = "0.10.2"
 shellexpand = "2.1.0"
-solana-account-decoder = "1.10"
-solana-client = "1.10"
-solana-transaction-crawler = "0.0.6"
-solana-logger = "1.10"
-solana-program = "1.10"
-solana-transaction-status = "1.10"
-spl-associated-token-account = "1.0.3"
-spl-token = "3.3.0"
+miraland-account-decoder = "1.14.17-rc5"
+miraland-client = "1.14.17-rc5"
+miraland-logger = "1.14.17-rc5"
+miraland-program = "1.14.17-rc5"
+miraland-transaction-status = "1.14.17-rc5"
+spl-associated-token-account = { package = "solarti-associated-token-account", version = "1.1.6" }
+spl-token = { package = "solarti-token", version = "3.5.4" }
 thiserror = "1.0.31"
 tokio = "1.14.0"
 tracing = { version = "0.1.35", features = ["log"] }
@@ -69,3 +68,7 @@ url = "2.2.2"
 version = "1"
 default-features = false
 features = ["precommit-hook", "user-hooks"]
+
+[lib]
+crate-type = ["lib"]
+name = "sugar_cli"

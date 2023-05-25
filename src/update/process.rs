@@ -111,25 +111,25 @@ pub fn process_update(args: UpdateArgs) -> Result<()> {
                 Some(get_associated_token_address(&program.payer(), &spl_token))
             };
 
-            if config_data.sol_treasury_account.is_some() {
-                return Err(anyhow!("If spl-token-account or spl-token is set then sol-treasury-account cannot be set"));
+            if config_data.mln_treasury_account.is_some() {
+                return Err(anyhow!("If solarti-token-account or solarti-token is set then mln-treasury-account cannot be set"));
             }
 
             // validates the mint address of the token accepted as payment
             check_spl_token(&program, &spl_token.to_string())?;
 
             if let Some(token_account) = spl_token_account_figured {
-                // validates the spl token wallet to receive proceedings from SPL token payments
+                // validates the spl token wallet to receive proceedings from Solarti token payments
                 check_spl_token_account(&program, &token_account.to_string())?;
                 token_account
             } else {
                 return Err(anyhow!(
-                    "If spl-token is set, spl-token-account must also be set"
+                    "If solarti-token is set, solarti-token-account must also be set"
                 ));
             }
         }
-        None => match config_data.sol_treasury_account {
-            Some(sol_treasury_account) => sol_treasury_account,
+        None => match config_data.mln_treasury_account {
+            Some(mln_treasury_account) => mln_treasury_account,
             None => sugar_config.keypair.pubkey(),
         },
     };
@@ -205,7 +205,7 @@ fn create_candy_machine_data(
         None
     };
 
-    // If SPL token is used, get the decimals from the token mint account, otherwise use 9 for SOL.
+    // If Solarti token is used, get the decimals from the token mint account, otherwise use 9 for MLN.
     let decimals = get_mint_decimals(&program, config)?;
 
     let whitelist_mint_settings = config

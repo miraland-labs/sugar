@@ -29,7 +29,7 @@ pub fn sugar_setup(
     keypair_opt: Option<String>,
     rpc_url_opt: Option<String>,
 ) -> Result<SugarConfig> {
-    let sol_config_option = parse_solana_config();
+    let mln_config_option = parse_miraland_config();
 
     let rpc_url = get_rpc_url(rpc_url_opt);
 
@@ -46,17 +46,17 @@ pub fn sugar_setup(
             }
         },
 
-        None => match sol_config_option {
-            Some(ref sol_config) => match read_keypair_file(&sol_config.keypair_path) {
+        None => match mln_config_option {
+            Some(ref mln_config) => match read_keypair_file(&mln_config.keypair_path) {
                 Ok(keypair) => keypair,
                 Err(e) => {
                     error!(
                         "Failed to read keypair file: {}, {}",
-                        &sol_config.keypair_path, e
+                        &mln_config.keypair_path, e
                     );
                     return Err(anyhow!(
                         "Failed to read keypair file: {}, {}",
-                        &sol_config.keypair_path,
+                        &mln_config.keypair_path,
                         e
                     ));
                 }
@@ -79,16 +79,16 @@ pub fn sugar_setup(
 }
 
 pub fn get_rpc_url(rpc_url_opt: Option<String>) -> String {
-    let sol_config_option = parse_solana_config();
+    let mln_config_option = parse_miraland_config();
 
     match rpc_url_opt {
         Some(rpc_url) => rpc_url,
-        None => match sol_config_option {
-            Some(ref sol_config) => sol_config.json_rpc_url.clone(),
+        None => match mln_config_option {
+            Some(ref mln_config) => mln_config.json_rpc_url.clone(),
             None => {
                 println!(
                     "{}",
-                    style("No RPCL URL found in Solana config file.")
+                    style("No RPC URL found in Miraland config file.")
                         .bold()
                         .red(),
                 );

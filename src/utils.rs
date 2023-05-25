@@ -14,13 +14,13 @@ pub use anyhow::{anyhow, Result};
 use console::{style, Style};
 use dialoguer::theme::ColorfulTheme;
 pub use indicatif::{ProgressBar, ProgressStyle};
-use mpl_token_metadata::ID as TOKEN_METADATA_PROGRAM_ID;
-use solana_account_decoder::UiAccountEncoding;
-use solana_client::{
+use miraland_account_decoder::UiAccountEncoding;
+use miraland_client::{
     rpc_client::RpcClient,
     rpc_config::{RpcAccountInfoConfig, RpcProgramAccountsConfig},
     rpc_filter::{Memcmp, MemcmpEncodedBytes, RpcFilterType},
 };
+use mpl_token_metadata::ID as TOKEN_METADATA_PROGRAM_ID;
 use spl_token::state::{Account as SplAccount, Mint};
 
 use crate::{
@@ -54,7 +54,7 @@ pub fn check_spl_token(program: &Program, input: &str) -> Result<Mint> {
     let pubkey = Pubkey::from_str(input)?;
     let token_data = program.rpc().get_account_data(&pubkey)?;
     if token_data.len() != 82 {
-        return Err(anyhow!("Invalid spl-token passed in."));
+        return Err(anyhow!("Invalid solarti-token passed in."));
     }
     let token_mint = Mint::unpack_from_slice(&token_data)?;
 
@@ -62,7 +62,7 @@ pub fn check_spl_token(program: &Program, input: &str) -> Result<Mint> {
         Ok(token_mint)
     } else {
         Err(anyhow!(format!(
-            "The specified spl-token is not initialized: {input}",
+            "The specified solarti-token is not initialized: {input}",
         )))
     }
 }
@@ -77,7 +77,7 @@ pub fn check_spl_token_account(program: &Program, input: &str) -> Result<()> {
         Ok(())
     } else {
         Err(anyhow!(format!(
-            "The specified spl-token account is not initialized: {input}",
+            "The specified solarti-token account is not initialized: {input}",
         )))
     }
 }
@@ -173,10 +173,11 @@ pub fn get_cm_creator_mint_accounts(
     creator: &str,
     position: usize,
 ) -> Result<Vec<Pubkey>> {
+    // MI, Pubkey::new(&data) deprecated
     let accounts = get_cm_creator_accounts(client, creator, position)?
         .into_iter()
         .map(|(_, account)| account.data[33..65].to_vec())
-        .map(|data| Pubkey::new(&data))
+        .map(|data| Pubkey::try_from(data).expect("Slice must be the same length as a Pubkey"))
         .collect::<Vec<Pubkey>>();
 
     Ok(accounts)
@@ -188,7 +189,7 @@ fn get_cm_creator_accounts(
     position: usize,
 ) -> Result<Vec<(Pubkey, Account)>> {
     if position > 4 {
-        error!("CM Creator position cannot be greator than 4");
+        error!("CM Creator position cannot be greater than 4");
         std::process::exit(1);
     }
 
@@ -232,7 +233,7 @@ fn get_cm_creator_accounts(
 }
 
 pub fn get_mint_decimals(program: &Program, config: &ConfigData) -> Result<u8> {
-    // If SPL token is used, get the decimals from the token account, otherwise use 9 for SOL.
+    // If Solarti token is used, get the decimals from the token account, otherwise use 9 for MLN.
     if let Some(mint_pubkey) = config.spl_token {
         let mint_account = program.rpc().get_account(&mint_pubkey)?;
         let mint = spl_token::state::Mint::unpack(&mint_account.data)?;

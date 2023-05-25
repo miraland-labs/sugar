@@ -8,9 +8,9 @@
       "share": 100
     }
   ],
-  "solTreasuryAccount": "ENsRsTm9GtfvPKJwg9HhHNUFqoRSUp2TYdfyqDHeNJAn",
-  "splTokenAccount": null,
-  "splToken": null,
+  "mlnTreasuryAccount": "ENsRsTm9GtfvPKJwg9HhHNUFqoRSUp2TYdfyqDHeNJAn",
+  "solartiTokenAccount": null,
+  "solartiToken": null,
   "goLiveDate": "2022-10-04T13:51:34.813252+00:00",
   "endSettings": null,
   "whitelistMintSettings": null,

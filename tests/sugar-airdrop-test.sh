@@ -2,14 +2,14 @@
 
 #burn_and_close() {
 #  local keypair=$1;
-#  spl-token accounts --owner "${keypair}" --output json | jq '.[] | .[] .address' | xargs -I {} spl-token burn  {} 1 --owner "${keypair}"
-#  spl-token accounts --owner "${keypair}" --output json | jq '.[] | .[] .address' | xargs -I {} spl-token close {}   --owner "${keypair}"
-#  spl-token accounts --owner "${keypair}" | grep -v 'Token' | grep -v '^--' | awk '{print $1}' | xargs -I {} spl-token close {} --owner "${keypair}"
+#  solarti-token accounts --owner "${keypair}" --output json | jq '.[] | .[] .address' | xargs -I {} solarti-token burn  {} 1 --owner "${keypair}"
+#  solarti-token accounts --owner "${keypair}" --output json | jq '.[] | .[] .address' | xargs -I {} solarti-token close {}   --owner "${keypair}"
+#  solarti-token accounts --owner "${keypair}" | grep -v 'Token' | grep -v '^--' | awk '{print $1}' | xargs -I {} solarti-token close {} --owner "${keypair}"
 #  echo 1
 #}
 
 ENV_URL="devnet"
-RPC="https://api.devnet.solana.com"
+RPC="https://api.devnet-mln.miraland.top"
 STORAGE="bundlr"
 
 SCRIPT_DIR=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &>/dev/null && pwd)

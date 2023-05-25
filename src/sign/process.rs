@@ -4,7 +4,7 @@ pub use anchor_client::{
     solana_sdk::{
         account::Account,
         commitment_config::{CommitmentConfig, CommitmentLevel},
-        native_token::LAMPORTS_PER_SOL,
+        native_token::LAMPORTS_PER_MLN,
         pubkey::Pubkey,
         signature::{Keypair, Signature, Signer},
         system_instruction, system_program, sysvar,
@@ -14,9 +14,9 @@ pub use anchor_client::{
 };
 use anyhow::Error;
 use console::style;
+use miraland_client::rpc_client::RpcClient;
 use mpl_token_metadata::{instruction::sign_metadata, ID as METAPLEX_PROGRAM_ID};
 use retry::{delay::Exponential, retry};
-use solana_client::rpc_client::RpcClient;
 use tokio::sync::Semaphore;
 
 use crate::{

@@ -10,12 +10,12 @@ use anchor_lang::{prelude::AccountMeta, ToAccountMetas};
 use anyhow::Result;
 use chrono::Utc;
 use console::style;
+use miraland_client::rpc_response::Response;
 use mpl_candy_machine::{
     accounts as nft_accounts, instruction as nft_instruction, CandyError, CandyMachine,
     CollectionPDA, EndSettingType, WhitelistMintMode,
 };
 use mpl_token_metadata::pda::find_collection_authority_account;
-use solana_client::rpc_response::Response;
 use spl_associated_token_account::{
     get_associated_token_address, instruction::create_associated_token_account,
 };
@@ -302,7 +302,7 @@ pub async fn mint(
 
     // Create associated account instruction
     let create_assoc_account_ix =
-        create_associated_token_account(&payer, &receiver, &nft_mint.pubkey());
+        create_associated_token_account(&payer, &receiver, &nft_mint.pubkey(), &spl_token::ID);
 
     // Mint to instruction
     let mint_to_ix = mint_to(
@@ -355,7 +355,7 @@ pub async fn mint(
                     error!("Invalid whitelist token account: {}", err);
                     return Err(anyhow!(
                         "Uninitialized whitelist token account: {whitelist_token_account}.
-                         Check that you provided a valid SPL token mint for the whitelist."
+                         Check that you provided a valid Solarti token mint for the whitelist."
                     ));
                 }
             }
@@ -399,7 +399,7 @@ pub async fn mint(
             is_writable: false,
         });
 
-        // Add freeze ata if SPL token mint is enabled.
+        // Add freeze ata if Solarti token mint is enabled.
         if let Some(token_mint) = candy_machine_state.token_mint {
             let freeze_ata = get_associated_token_address(&pda, &token_mint);
             additional_accounts.push(AccountMeta {
@@ -490,7 +490,7 @@ pub async fn mint(
             _ => "",
         };
         return Err(anyhow!(
-            "Minting most likely failed with a bot tax. Check the transaction link for more details: https://explorer.solana.com/tx/{}{}",
+            "Minting most likely failed with a bot tax. Check the transaction link for more details: https://explorer.miraland.top/tx/{}{}",
             sig.to_string(),
             cluster_param,
         ));

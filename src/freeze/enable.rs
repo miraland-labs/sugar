@@ -110,8 +110,12 @@ pub fn enable_freeze(
     // If spl token mint setting is enabled, add the freeze ata to the accounts.
     if let Some(spl_token_mint) = config.spl_token {
         let freeze_ata = get_associated_token_address(&freeze_pda, &spl_token_mint);
-        let freeze_ata_ix =
-            create_associated_token_account(&program.payer(), &freeze_pda, &spl_token_mint);
+        let freeze_ata_ix = create_associated_token_account(
+            &program.payer(),
+            &freeze_pda,
+            &spl_token_mint,
+            &spl_token::ID,
+        );
 
         let freeze_ata_account = AccountMeta {
             pubkey: freeze_ata,

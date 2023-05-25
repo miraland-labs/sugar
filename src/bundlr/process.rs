@@ -1,4 +1,4 @@
-use anchor_client::solana_sdk::{native_token::LAMPORTS_PER_SOL, signer::Signer};
+use anchor_client::solana_sdk::{native_token::LAMPORTS_PER_MLN, signer::Signer};
 use bundlr_sdk::deep_hash::{deep_hash, DeepHashChunk};
 use console::style;
 use data_encoding::BASE64URL;
@@ -59,8 +59,8 @@ pub async fn process_bundlr(args: BundlrArgs) -> Result<()> {
     println!("\nFunding address:");
     println!("  -> pubkey: {address}");
     println!(
-        "  -> lamports: {balance} (◎ {})",
-        balance as f64 / LAMPORTS_PER_SOL as f64
+        "  -> lamports: {balance} (𝇊 {})",
+        balance as f64 / LAMPORTS_PER_MLN as f64
     );
 
     // withdrawing funds
@@ -132,9 +132,9 @@ pub async fn process_bundlr(args: BundlrArgs) -> Result<()> {
                 style("Insufficient balance for withdraw:").red().bold()
             );
             println!(
-                "  -> required balance > {} (◎ {})",
+                "  -> required balance > {} (𝇊 {})",
                 LIMIT,
-                LIMIT as f64 / LAMPORTS_PER_SOL as f64
+                LIMIT as f64 / LAMPORTS_PER_MLN as f64
             );
         }
     }

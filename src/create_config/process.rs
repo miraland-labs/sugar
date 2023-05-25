@@ -364,18 +364,18 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
         .items(&extra_functions_options)
         .interact()?;
 
-    // SPL token mint
+    // Solarti token mint
 
     let sugar_config = sugar_setup(args.keypair, args.rpc_url)?;
     let client = Arc::new(setup_client(&sugar_config)?);
     let program = client.program(CANDY_MACHINE_ID);
 
     if choices.contains(&SPL_INDEX) {
-        config_data.sol_treasury_account = None;
+        config_data.mln_treasury_account = None;
         config_data.spl_token = Some(
             Pubkey::from_str(
                 &Input::with_theme(&theme)
-                    .with_prompt("What is your SPL token mint address?")
+                    .with_prompt("What is your Solarti token mint address?")
                     .validate_with(pubkey_validator)
                     .validate_with(|input: &String| -> Result<()> {
                         check_spl_token(&program, input)?;
@@ -389,7 +389,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
         config_data.spl_token_account = Some(
                 Pubkey::from_str(
                     &Input::with_theme(&theme)
-                        .with_prompt("What is your SPL token account address (the account that will hold the SPL token mints)?")
+                        .with_prompt("What is your Solarti token account address (the account that will hold the Solarti token mints)?")
                         .validate_with(pubkey_validator)
                         .validate_with(|input: &String| -> Result<()> {
                             check_spl_token_account(&program, input)
@@ -402,10 +402,10 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     } else {
         config_data.spl_token = None;
         config_data.spl_token_account = None;
-        config_data.sol_treasury_account = Some(
+        config_data.mln_treasury_account = Some(
             Pubkey::from_str(
                 &Input::with_theme(&theme)
-                    .with_prompt("What is your SOL treasury address?")
+                    .with_prompt("What is your MLN treasury address?")
                     .validate_with(pubkey_validator)
                     .interact()
                     .unwrap(),
@@ -443,7 +443,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     config_data.whitelist_mint_settings = if choices.contains(&WL_INDEX) {
         let mint = Pubkey::from_str(
             &Input::with_theme(&theme)
-                .with_prompt("What is your WL token mint address?")
+                .with_prompt("What is your White List(WL) token mint address?")
                 .validate_with(pubkey_validator)
                 .interact()
                 .unwrap(),

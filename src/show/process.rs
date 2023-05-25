@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use anchor_client::solana_sdk::{native_token::LAMPORTS_PER_SOL, pubkey::Pubkey};
+use anchor_client::solana_sdk::{native_token::LAMPORTS_PER_MLN, pubkey::Pubkey};
 use anyhow::Result;
 use chrono::NaiveDateTime;
 use console::style;
@@ -111,8 +111,8 @@ pub fn process_show(args: ShowArgs) -> Result<()> {
         "",
         "price",
         format!(
-            "◎ {} ({})",
-            cndy_data.price as f64 / LAMPORTS_PER_SOL as f64,
+            "𝇊 {} ({})",
+            cndy_data.price as f64 / LAMPORTS_PER_MLN as f64,
             cndy_data.price
         ),
     );
@@ -210,7 +210,7 @@ pub fn process_show(args: ShowArgs) -> Result<()> {
             ":   ",
             "discount price",
             if let Some(value) = whitelist_settings.discount_price {
-                format!("◎ {} ({})", value as f64 / LAMPORTS_PER_SOL as f64, value)
+                format!("𝇊 {} ({})", value as f64 / LAMPORTS_PER_MLN as f64, value)
             } else {
                 "none".to_string()
             },

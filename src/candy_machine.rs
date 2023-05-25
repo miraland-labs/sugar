@@ -42,14 +42,14 @@ pub fn parse_config_price(client: &Client, config: &ConfigData) -> Result<u64> {
                 match e {
                     FloatConversionError::Fractional => {
                         return Err(anyhow!(
-                            "Can't convert price to u64: price may have more decimals than SPL token. Price: {}, decimals: {}.",
+                            "Can't convert price to u64: price may have more decimals than Solarti token. Price: {}, decimals: {}.",
                             config.price,
                             token_mint.decimals
                         ))
                     },
                     FloatConversionError::Overflow => {
                         return Err(anyhow!(
-                            "Can't convert price to u64 because of overflow: price is too large or too many SPL token decimals. Price: {}, decimals: {}.",
+                            "Can't convert price to u64 because of overflow: price is too large or too many Solarti token decimals. Price: {}, decimals: {}.",
                             config.price,
                             token_mint.decimals
                         ))

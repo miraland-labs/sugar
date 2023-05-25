@@ -654,9 +654,9 @@ cat >$CONFIG_FILE <<-EOM
     "symbol": "TEST",
     "sellerFeeBasisPoints": 500,
     "gatekeeper": null,
-    "solTreasuryAccount": "$(solana address)",
-    "splTokenAccount": null,
-    "splToken": null,
+    "mlnTreasuryAccount": "$(miraland address)",
+    "solartiTokenAccount": null,
+    "solartiToken": null,
     "goLiveDate": "$(date "+%Y-%m-%dT%T%z" | sed "s@^.\{22\}@&:@")",
     "endSettings": null,
     "whitelistMintSettings": null,
@@ -674,7 +674,7 @@ cat >$CONFIG_FILE <<-EOM
     "isMutable": true,
     "creators": [
         {
-            "address": "$(solana address)",
+            "address": "$(miraland address)",
             "share": 100
         }
     ],

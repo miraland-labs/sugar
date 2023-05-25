@@ -4,7 +4,7 @@ use std::{
 };
 
 use anchor_client::solana_sdk::{
-    native_token::LAMPORTS_PER_SOL, pubkey::Pubkey, signature::Keypair,
+    native_token::LAMPORTS_PER_MLN, pubkey::Pubkey, signature::Keypair,
 };
 pub use anyhow::{anyhow, Result};
 use chrono::prelude::*;
@@ -25,7 +25,7 @@ pub struct SugarConfig {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct SolanaConfig {
+pub struct MiralandConfig {
     pub json_rpc_url: String,
     pub keypair_path: String,
     pub commitment: String,
@@ -41,7 +41,7 @@ pub struct ConfigData {
 
     #[serde(deserialize_with = "to_option_pubkey")]
     #[serde(serialize_with = "to_option_string")]
-    pub sol_treasury_account: Option<Pubkey>,
+    pub mln_treasury_account: Option<Pubkey>,
 
     #[serde(deserialize_with = "to_option_pubkey")]
     #[serde(serialize_with = "to_option_string")]
@@ -121,7 +121,7 @@ pub fn go_live_date_as_timestamp(go_live_date: &Option<String>) -> Result<Option
 }
 
 pub fn price_as_lamports(price: f64) -> u64 {
-    (price * LAMPORTS_PER_SOL as f64) as u64
+    (price * LAMPORTS_PER_MLN as f64) as u64
 }
 
 fn to_pubkey<'de, D>(deserializer: D) -> Result<Pubkey, D::Error>

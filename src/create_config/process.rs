@@ -182,7 +182,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     // price
 
     config_data.price = Input::with_theme(&theme)
-        .with_prompt("What is the price of each NFT?")
+        .with_prompt("What is the price of each NFT(in MLN or Solarti token)?")
         .validate_with(float_validator)
         .interact()
         .unwrap()
@@ -245,7 +245,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     } else {
         Input::with_theme(&theme)
             .with_prompt(
-                "What is the seller fee basis points?",
+                "What is the seller fee basis points([basis points]/100 means fee percentage)?",
             )
             .validate_with(seller_fee_basis_points_validator)
             .interact()
@@ -351,7 +351,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     const FREEZE_SETTINGS_INDEX: usize = 5;
 
     let extra_functions_options = vec![
-        "SPL Token Mint",
+        "Solarti Token Mint",
         "Gatekeeper",
         "Whitelist Mint",
         "End Settings",
@@ -443,7 +443,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     config_data.whitelist_mint_settings = if choices.contains(&WL_INDEX) {
         let mint = Pubkey::from_str(
             &Input::with_theme(&theme)
-                .with_prompt("What is your White List(WL) token mint address?")
+                .with_prompt("What is your whitelist(WL) token mint address?")
                 .validate_with(pubkey_validator)
                 .interact()
                 .unwrap(),

@@ -45,10 +45,12 @@ pub struct ConfigData {
 
     #[serde(deserialize_with = "to_option_pubkey")]
     #[serde(serialize_with = "to_option_string")]
+    #[serde(rename = "solartiTokenAccount")]
     pub spl_token_account: Option<Pubkey>,
 
     #[serde(deserialize_with = "to_option_pubkey")]
     #[serde(serialize_with = "to_option_string")]
+    #[serde(rename = "solartiToken")]
     pub spl_token: Option<Pubkey>,
 
     pub go_live_date: Option<String>,

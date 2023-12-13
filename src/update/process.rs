@@ -119,7 +119,7 @@ pub fn process_update(args: UpdateArgs) -> Result<()> {
             check_spl_token(&program, &spl_token.to_string())?;
 
             if let Some(token_account) = spl_token_account_figured {
-                // validates the spl token wallet to receive proceedings from Solarti token payments
+                // validates the solarti token wallet to receive proceedings from Solarti token payments
                 check_spl_token_account(&program, &token_account.to_string())?;
                 token_account
             } else {

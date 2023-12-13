@@ -89,7 +89,7 @@ pub fn unlock_funds(
 
     let mut additional_accounts = Vec::new();
 
-    // If spl token mint setting is enabled, add the freeze ata to the accounts.
+    // If solarti token mint setting is enabled, add the freeze ata to the accounts.
     if let Some(spl_token_mint) = config.spl_token {
         // Add Token program account.
         additional_accounts.push(AccountMeta {

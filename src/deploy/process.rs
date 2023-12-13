@@ -201,7 +201,7 @@ pub async fn process_deploy(args: DeployArgs) -> Result<()> {
                 // validates the mint address of the token accepted as payment
                 check_spl_token(&program, &spl_token.to_string())?;
 
-                // validates the spl token wallet to receive proceedings from Solarti token payments
+                // validates the solarti token wallet to receive proceedings from Solarti token payments
                 check_spl_token_account(&program, &token_account.to_string())?;
                 token_account
             }

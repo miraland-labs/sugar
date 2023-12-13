@@ -107,7 +107,7 @@ pub fn enable_freeze(
     let mut builder = program.request();
     let mut additional_accounts = Vec::new();
 
-    // If spl token mint setting is enabled, add the freeze ata to the accounts.
+    // If solarti token mint setting is enabled, add the freeze ata to the accounts.
     if let Some(spl_token_mint) = config.spl_token {
         let freeze_ata = get_associated_token_address(&freeze_pda, &spl_token_mint);
         let freeze_ata_ix = create_associated_token_account(

@@ -168,7 +168,7 @@ pub static CANDY_ERROR: phf::Map<&'static str, &'static str> = phf_map! {
     "179D" => "NoWithdrawWithFreeze: Can't withdraw Candy Machine while freeze is active. Disable freeze first.",
     "179E" => "NoWithdrawWithFrozenFunds",
     "179F" => "MissingRemoveFreezeTokenAccounts: Missing required remaining accounts for remove_freeze with token mint.",
-    "17A0" => "InvalidFreezeWithdrawTokenAddress: Can't withdraw SPL Token from freeze PDA into itself",
+    "17A0" => "InvalidFreezeWithdrawTokenAddress: Can't withdraw Solarti Token from freeze PDA into itself",
     "17A1" => "NoUnlockWithNFTsStillFrozen: Can't unlock funds while NFTs are still frozen. Run thaw on all NFTs first.",
     "17A2" => "SizedCollectionMetadataMustBeMutable: Setting a sized collection requires the collection metadata to be mutable.",
 };

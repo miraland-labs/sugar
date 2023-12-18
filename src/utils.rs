@@ -193,29 +193,52 @@ fn get_cm_creator_accounts(
         std::process::exit(1);
     }
 
+    // MI: deprecated, using constructor method (i.e. new) instead
+    // let config = RpcProgramAccountsConfig {
+    //     filters: Some(vec![RpcFilterType::Memcmp(Memcmp {
+    //         offset: 1 + // key
+    //         32 + // update auth
+    //         32 + // mint
+    //         4 + // name string length
+    //         MAX_NAME_LENGTH + // name
+    //         4 + // uri string length
+    //         MAX_URI_LENGTH + // uri*
+    //         4 + // symbol string length
+    //         MAX_SYMBOL_LENGTH + // symbol
+    //         2 + // seller fee basis points
+    //         1 + // whether or not there is a creators vec
+    //         4 + // creators
+    //         position * // index for each creator
+    //         (
+    //             32 + // address
+    //             1 + // verified
+    //             1 // share
+    //         ),
+    //         bytes: MemcmpEncodedBytes::Base58(creator.to_string()),
+    //         encoding: None,
+    //     })]),
+
+    let offset = 1 + // key
+    32 + // update auth
+    32 + // mint
+    4 + // name string length
+    MAX_NAME_LENGTH + // name
+    4 + // uri string length
+    MAX_URI_LENGTH + // uri*
+    4 + // symbol string length
+    MAX_SYMBOL_LENGTH + // symbol
+    2 + // seller fee basis points
+    1 + // whether or not there is a creators vec
+    4 + // creators
+    position * // index for each creator
+    (
+        32 + // address
+        1 + // verified
+        1 // share
+    );
+    let bytes = MemcmpEncodedBytes::Base58(creator.to_string());
     let config = RpcProgramAccountsConfig {
-        filters: Some(vec![RpcFilterType::Memcmp(Memcmp {
-            offset: 1 + // key
-            32 + // update auth
-            32 + // mint
-            4 + // name string length
-            MAX_NAME_LENGTH + // name
-            4 + // uri string length
-            MAX_URI_LENGTH + // uri*
-            4 + // symbol string length
-            MAX_SYMBOL_LENGTH + // symbol
-            2 + // seller fee basis points
-            1 + // whether or not there is a creators vec
-            4 + // creators
-            position * // index for each creator
-            (
-                32 + // address
-                1 + // verified
-                1 // share
-            ),
-            bytes: MemcmpEncodedBytes::Base58(creator.to_string()),
-            encoding: None,
-        })]),
+        filters: Some(vec![RpcFilterType::Memcmp(Memcmp::new(offset, bytes))]),
         account_config: RpcAccountInfoConfig {
             encoding: Some(UiAccountEncoding::Base64),
             data_slice: None,

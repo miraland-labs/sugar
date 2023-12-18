@@ -82,12 +82,15 @@ pub fn process_withdraw(args: WithdrawArgs) -> Result<()> {
             pb.finish_with_message("Done");
         }
         None => {
+            let offset = 8; // key
+            let bytes = MemcmpEncodedBytes::Base58(payer.to_string());
             let config = RpcProgramAccountsConfig {
-                filters: Some(vec![RpcFilterType::Memcmp(Memcmp {
-                    offset: 8, // key
-                    bytes: MemcmpEncodedBytes::Base58(payer.to_string()),
-                    encoding: None,
-                })]),
+                // filters: Some(vec![RpcFilterType::Memcmp(Memcmp {
+                //     offset: 8, // key
+                //     bytes: MemcmpEncodedBytes::Base58(payer.to_string()),
+                //     encoding: None,
+                // })]),
+                filters: Some(vec![RpcFilterType::Memcmp(Memcmp::new(offset, bytes))]),
                 account_config: RpcAccountInfoConfig {
                     encoding: Some(UiAccountEncoding::Base64),
                     data_slice: None,

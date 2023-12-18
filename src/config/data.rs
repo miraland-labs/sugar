@@ -329,9 +329,10 @@ impl HiddenSettings {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Default, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum UploadMethod {
+    #[default]
     Bundlr,
     #[serde(rename = "aws")]
     AWS,
@@ -347,11 +348,12 @@ impl Display for UploadMethod {
     }
 }
 
-impl Default for UploadMethod {
-    fn default() -> UploadMethod {
-        UploadMethod::Bundlr
-    }
-}
+// MI, using derive macro
+// impl Default for UploadMethod {
+//     fn default() -> UploadMethod {
+//         UploadMethod::Bundlr
+//     }
+// }
 
 #[derive(Debug, Clone, Deserialize, Default, Serialize)]
 pub struct Creator {

@@ -1,4 +1,4 @@
-use std::{str::FromStr, sync::Arc};
+use std::{rc::Rc, str::FromStr, sync::Arc};
 
 use anchor_client::solana_sdk::{
     program_pack::Pack,
@@ -46,7 +46,8 @@ pub struct MintArgs {
 
 pub async fn process_mint(args: MintArgs) -> Result<()> {
     let sugar_config = sugar_setup(args.keypair, args.rpc_url)?;
-    let client = Arc::new(setup_client(&sugar_config)?);
+    // let client = Arc::new(setup_client(&sugar_config)?); // MI, as trait Send and Sync required for Arc
+    let client = Rc::new(setup_client(&sugar_config)?);
 
     // the candy machine id specified takes precedence over the one from the cache
 

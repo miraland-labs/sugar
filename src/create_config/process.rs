@@ -2,8 +2,9 @@ use std::{
     default::Default,
     fs::{File, OpenOptions},
     path::{Path, PathBuf},
+    rc::Rc,
     str::FromStr,
-    sync::Arc,
+    // sync::Arc,
 };
 
 use anchor_lang::prelude::Pubkey;
@@ -295,7 +296,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
         .validate_with(number_validator)
         .validate_with({
             |input: &String| match input.parse::<u8>().unwrap() {
-                1 | 2 | 3 | 4 => Ok(()),
+                1..=4 => Ok(()),
                 _ => Err("Number of creator wallets must be between 1 and 4, inclusive."),
             }
         })
@@ -306,7 +307,7 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
 
     let mut total_share = 0;
 
-    (0..num_creators).into_iter().for_each(|i| {
+    (0..num_creators).for_each(|i| {
         let address = Pubkey::from_str(
             &Input::with_theme(&theme)
                 .with_prompt(format!("Enter creator wallet address #{}", i + 1))
@@ -367,7 +368,8 @@ pub fn process_create_config(args: CreateConfigArgs) -> Result<()> {
     // Solarti token mint
 
     let sugar_config = sugar_setup(args.keypair, args.rpc_url)?;
-    let client = Arc::new(setup_client(&sugar_config)?);
+    // let client = Arc::new(setup_client(&sugar_config)?); // MI
+    let client = Rc::new(setup_client(&sugar_config)?);
     let program = client.program(CANDY_MACHINE_ID);
 
     if choices.contains(&SPL_INDEX) {

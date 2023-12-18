@@ -1,4 +1,5 @@
 use std::{
+    rc::Rc,
     str::FromStr,
     sync::{Arc, Mutex},
 };
@@ -32,7 +33,8 @@ pub struct AirdropArgs {
 
 pub async fn process_airdrop(args: AirdropArgs) -> Result<()> {
     let sugar_config = sugar_setup(args.keypair, args.rpc_url)?;
-    let client = Arc::new(setup_client(&sugar_config)?);
+    // let client = Arc::new(setup_client(&sugar_config)?); // MI
+    let client = Rc::new(setup_client(&sugar_config)?);
     let mut airdrop_list: AirDropTargets = load_airdrop_list(args.airdrop_list)?;
 
     // load_airdrop_results syncs airdrop_list and airdrop_results in case of rerun failures

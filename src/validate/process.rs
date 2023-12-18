@@ -77,7 +77,7 @@ pub fn process_validate(args: ValidateArgs) -> Result<()> {
     // be rare or impossible to produce.
     let paths: Vec<PathBuf> = glob(pattern)
         .unwrap()
-        .into_iter()
+        // .into_iter() // MI
         .map(Result::unwrap)
         .collect();
 

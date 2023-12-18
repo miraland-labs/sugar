@@ -355,5 +355,6 @@ pub fn get_updated_metadata(
 }
 
 pub fn is_complete_uri(value: &str) -> bool {
-    matches!(url::Url::parse(value), Ok(_))
+    // matches!(url::Url::parse(value), Ok(_)) // MI
+    url::Url::parse(value).is_ok()
 }
